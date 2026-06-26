@@ -314,6 +314,8 @@ static void build_window()
     gtk_box_pack_start(GTK_BOX(toolbar), auto_label, FALSE, FALSE, 0);
 
     g_app.autorefresh_switch = gtk_switch_new();
+    gtk_switch_set_active(GTK_SWITCH(g_app.autorefresh_switch), TRUE);
+
     g_signal_connect(g_app.autorefresh_switch, "notify::active", G_CALLBACK(on_autorefresh_toggled), nullptr);
     gtk_box_pack_start(GTK_BOX(toolbar), g_app.autorefresh_switch, FALSE, FALSE, 0);
 
