@@ -316,6 +316,13 @@ static void build_window()
     g_app.autorefresh_switch = gtk_switch_new();
     gtk_switch_set_active(GTK_SWITCH(g_app.autorefresh_switch), TRUE);
 
+    g_idle_add(
+        [](gpointer) -> gboolean
+        {
+                       on_scan_clicked(nullptr, nullptr);
+                       return G_SOURCE_REMOVE; },
+        nullptr);
+
     g_signal_connect(g_app.autorefresh_switch, "notify::active", G_CALLBACK(on_autorefresh_toggled), nullptr);
     gtk_box_pack_start(GTK_BOX(toolbar), g_app.autorefresh_switch, FALSE, FALSE, 0);
 
